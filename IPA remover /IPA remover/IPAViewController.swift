@@ -16,6 +16,14 @@ class IPAViewController: NSViewController {
     
     private let remover = Remover()
     
+    @IBAction func updateTable(_sender: NSButton) {
+        guard let objects = metaFiles.selectedObjects as? [MetaFiles] else { return }
+        objects.forEach {metaFiles.removeObject($0)}
+        print(objects)
+        files.removeAll()
+        filesToRemove.removeAll()
+        loadData()
+    }
     
     @IBOutlet var metaFiles: NSArrayController!
     @IBOutlet weak var nothingFoundLabel: NSTextField!
@@ -64,13 +72,18 @@ class IPAViewController: NSViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.allowsMultipleSelection = true
-        getMetadata()
-        nothingFoundLabel.isHidden = true
+        loadData()
     }
 }
 
 private extension IPAViewController {
+    
+    func loadData()  {
+        tableView.allowsMultipleSelection = true
+        getMetadata()
+        nothingFoundLabel.isHidden = true
+        tableView.isHidden = false
+    }
     
     func getMetadata() {
         NotificationCenter.default.addObserver(self, selector: #selector(initalGatherComplete (notification:)), name: NSNotification.Name.NSMetadataQueryDidFinishGathering,  object: nil)

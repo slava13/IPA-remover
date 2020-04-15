@@ -684,11 +684,53 @@
         <scene sceneID="R2V-B0-nI4">
             <objects>
                 <windowController id="B8D-0N-5wS" sceneMemberID="viewController">
-                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
+                    <window key="window" title="IPA-remover" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" titleVisibility="hidden" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="240" width="480" height="270"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
+                        <toolbar key="toolbar" implicitIdentifier="C3B0F0E8-F0B4-4B66-A47B-BC705213AA53" autosavesConfiguration="NO" displayMode="iconAndLabel" sizeMode="regular" id="86N-PL-LgS">
+                            <allowedToolbarItems>
+                                <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="fcJ-ZR-DO5"/>
+                                <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="dfe-Bl-lpx"/>
+                                <toolbarItem implicitItemIdentifier="77869959-3143-4B13-9219-88491916D6E6" label="Update Button" paletteLabel="Update Button" image="NSRefreshTemplate" sizingBehavior="auto" id="Nj0-7G-Xee">
+                                    <nil key="toolTip"/>
+                                    <button key="view" verticalHuggingPriority="750" id="q4d-15-U8w">
+                                        <rect key="frame" x="0.0" y="14" width="127" height="25"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="NSRefreshTemplate" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="t2A-ih-1pv">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                            <string key="keyEquivalent" base64-UTF8="YES">
+DQ
+</string>
+                                        </buttonCell>
+                                    </button>
+                                    <connections>
+                                        <action selector="updateTableWith_sender:" target="Oky-zY-oP4" id="yA8-UY-ZgI"/>
+                                    </connections>
+                                </toolbarItem>
+                                <toolbarItem implicitItemIdentifier="F6B3F3B7-87B1-4DB6-A70C-DF16147C9715" label="Custom View" paletteLabel="Custom View" sizingBehavior="auto" id="7cR-ui-V8M" userLabel="Label">
+                                    <nil key="toolTip"/>
+                                    <textField key="view" horizontalHuggingPriority="251" verticalHuggingPriority="750" id="PvR-vv-INv">
+                                        <rect key="frame" x="0.0" y="14" width="84" height="16"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <textFieldCell key="cell" lineBreakMode="clipping" title="IPA-remover" id="Id1-Ed-V4f">
+                                            <font key="font" usesAppearanceFont="YES"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                </toolbarItem>
+                            </allowedToolbarItems>
+                            <defaultToolbarItems>
+                                <toolbarItem reference="dfe-Bl-lpx"/>
+                                <toolbarItem reference="fcJ-ZR-DO5"/>
+                                <toolbarItem reference="7cR-ui-V8M"/>
+                                <toolbarItem reference="dfe-Bl-lpx"/>
+                                <toolbarItem reference="Nj0-7G-Xee"/>
+                            </defaultToolbarItems>
+                        </toolbar>
                         <connections>
                             <outlet property="delegate" destination="B8D-0N-5wS" id="98r-iN-zZc"/>
                         </connections>
@@ -803,7 +845,7 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="DEK-5z-cZx">
-                                                            <rect key="frame" x="367.5" y="1" width="108" height="17"/>
+                                                            <rect key="frame" x="368" y="1" width="108" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IPz-XV-Wjn">
@@ -897,4 +939,7 @@
             <point key="canvasLocation" x="75" y="655"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="NSRefreshTemplate" width="11" height="15"/>
+    </resources>
 </document>
