@@ -11,10 +11,10 @@ import Foundation
 class MetaFiles: NSObject {
     
     @objc var path: String
-    @objc var size: String
+    @objc var size: Int64
     @objc dynamic var isEnabled: Bool
     
-    init(path: String, size: String, isEnabled: Bool) {
+    init(path: String, size: Int64, isEnabled: Bool) {
         self.path = path
         self.size = size
         self.isEnabled = isEnabled
