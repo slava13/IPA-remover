@@ -19,5 +19,4 @@ class MetaFiles: NSObject {
         self.size = size
         self.isEnabled = isEnabled
     }
-    
 }

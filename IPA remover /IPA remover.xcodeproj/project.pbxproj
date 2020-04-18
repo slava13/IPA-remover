@@ -17,6 +17,7 @@
 		F9DBF39D244B2FE800B0257C /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DBF39C244B2FE800B0257C /* StringExtension.swift */; };
 		F9E2AEB82446482C00147A2A /* FileManagerInjectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E2AEB72446482C00147A2A /* FileManagerInjectable.swift */; };
 		F9E2AEBA2446497400147A2A /* Remover.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E2AEB92446497400147A2A /* Remover.swift */; };
+		F9EFD84A244BBFCD00421EC0 /* MetaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9EFD849244BBFCD00421EC0 /* MetaData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,7 @@
 		F9DBF39C244B2FE800B0257C /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		F9E2AEB72446482C00147A2A /* FileManagerInjectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerInjectable.swift; sourceTree = "<group>"; };
 		F9E2AEB92446497400147A2A /* Remover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Remover.swift; sourceTree = "<group>"; };
+		F9EFD849244BBFCD00421EC0 /* MetaData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetaData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +85,7 @@
 				F9E2AEB72446482C00147A2A /* FileManagerInjectable.swift */,
 				F9E2AEB92446497400147A2A /* Remover.swift */,
 				C65AC6182448FDFF0016EC24 /* SizeToStringTransformer.swift */,
+				F9EFD849244BBFCD00421EC0 /* MetaData.swift */,
 				F9DBF399244B2F0200B0257C /* Extensions */,
 			);
 			path = Models;
@@ -172,6 +175,7 @@
 				F9E2AEBA2446497400147A2A /* Remover.swift in Sources */,
 				F94AF9D224425760006E5908 /* MetaFiles.swift in Sources */,
 				F9DBF39D244B2FE800B0257C /* StringExtension.swift in Sources */,
+				F9EFD84A244BBFCD00421EC0 /* MetaData.swift in Sources */,
 				C65AC6192448FDFF0016EC24 /* SizeToStringTransformer.swift in Sources */,
 				F9DBF39B244B2F1800B0257C /* SizeExtension.swift in Sources */,
 				F94AF9BF24425236006E5908 /* AppDelegate.swift in Sources */,

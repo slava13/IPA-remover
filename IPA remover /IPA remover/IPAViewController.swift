@@ -10,21 +10,19 @@ import Cocoa
 
 class IPAViewController: NSViewController {
     
-    private var metadataQuery: NSMetadataQuery!
     private var files: [MetaFiles] = []
     private var filesToRemove: [MetaFiles] = []
-    
-    private var totalSize: Int64 = 0
     private let remover = Remover()
+    private let metadata = MetaData()
     
-    @IBOutlet var metaFiles: NSArrayController!
+    @IBOutlet var metaFilesController: NSArrayController!
     @IBOutlet weak var nothingFoundLabel: NSTextField!
     @IBOutlet weak var tableView: NSTableView!
     @IBOutlet weak var sizeValue: NSTextField!
     
     @IBAction func select(_ sender: NSButton) {
         let index = tableView.row(for: sender)
-        let objects = metaFiles.selectedObjects as? [MetaFiles]
+        let objects = metaFilesController.selectedObjects as? [MetaFiles]
         guard let files = objects else { return }
         let file = files[index]
         
@@ -41,11 +39,11 @@ class IPAViewController: NSViewController {
     @IBAction func removeAll(_ sender: NSButton) {
         let container = Array(Set(filesToRemove))
         container.forEach { (file) in
-            totalSize -= file.size
+            metadata.totalSize -= file.size
             remover.remove(file.path)
-            metaFiles.removeObject(file)
-            files.removeAll(where: {$0.isEnabled == true})
-            sizeValue.stringValue = totalSize.convertToReadebleSize()
+            metaFilesController.removeObject(file)
+            metadata.files.removeAll(where: {$0.isEnabled == true})
+            sizeValue.stringValue = metadata.totalSize.convertToReadebleSize()
             sizeValue.updateLayer()
         }
         filesToRemove.removeAll()
@@ -53,25 +51,25 @@ class IPAViewController: NSViewController {
     }
     
     @IBAction func selectDeselectAll(_ sender: Any) {
-        let selectedEverything = files.filter { $0.isEnabled }.count == files.count
+        let selectedEverything = metadata.files.filter { $0.isEnabled }.count == metadata.files.count
         let enabled = !selectedEverything
-        files.forEach { (file) in
+        metadata.files.forEach { (file) in
             if !file.isEnabled {
                 filesToRemove.append(file)
             } else {
                 filesToRemove.removeAll()
             }
         }
-        files.forEach { $0.isEnabled = enabled }
+        metadata.files.forEach { $0.isEnabled = enabled }
     }
     
     @IBAction func updateTable(_sender: NSButton) {
-        guard let objects = metaFiles.selectedObjects as? [MetaFiles] else { return }
-        objects.forEach {metaFiles.removeObject($0)}
+        guard let objects = metaFilesController.selectedObjects as? [MetaFiles] else { return }
+        objects.forEach {metaFilesController.removeObject($0)}
         print(objects)
-        files.removeAll()
+        metadata.files.removeAll()
         filesToRemove.removeAll()
-        totalSize = 0
+        metadata.totalSize = 0
         loadData()
     }
     
@@ -90,33 +88,15 @@ private extension IPAViewController {
     }
     
     func getMetadata() {
-        NotificationCenter.default.addObserver(self, selector: #selector(initalGatherComplete (notification:)), name: NSNotification.Name.NSMetadataQueryDidFinishGathering,  object: nil)
-        metadataQuery = NSMetadataQuery()
-        metadataQuery.searchScopes = [NSMetadataQueryLocalComputerScope]
-        metadataQuery.predicate = NSPredicate(format: "%K ENDSWITH 'com.apple.itunes.ipa'", NSMetadataItemContentTypeTreeKey)
-        metadataQuery.start()
-    }
-    
-    @objc func initalGatherComplete(notification: NSNotification) {
-        metadataQuery.stop()
-        
-        guard let results = metadataQuery.results as? [NSMetadataItem] else { return }
-        for item in results {
-            guard let path = item.value(forAttribute: NSMetadataItemPathKey) as? String else { return }
-            guard let nsNumber = item.value(forAttribute: NSMetadataItemFSSizeKey) as? NSNumber else { return }
-            if !path.isGitRepository() {
-                totalSize += nsNumber.int64Value
-                files.append(MetaFiles(path: path, size: nsNumber.int64Value, isEnabled: false))
-            }
+        metadata.fetchFiles { (files) in
+            self.sizeValue.stringValue = self.metadata.totalSize.convertToReadebleSize()
+            self.metaFilesController.add(contentsOf: files)
+            self.hideTableViewIfNeeded()
         }
-        sizeValue.stringValue = totalSize.convertToReadebleSize()
-        metaFiles.add(contentsOf: files)
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.NSMetadataQueryDidFinishGathering, object: nil)
-        hideTableViewIfNeeded()
     }
     
     func hideTableViewIfNeeded() {
-        guard let content = metaFiles.content as? [MetaFiles] else { return }
+        guard let content = metaFilesController.content as? [MetaFiles] else { return }
         if content.isEmpty {
             tableView.isHidden = true
             nothingFoundLabel.isHidden = false
