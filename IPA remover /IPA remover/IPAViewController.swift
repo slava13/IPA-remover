@@ -17,16 +17,6 @@ class IPAViewController: NSViewController {
     private var totalSize: Int64 = 0
     private let remover = Remover()
     
-    @IBAction func updateTable(_sender: NSButton) {
-        guard let objects = metaFiles.selectedObjects as? [MetaFiles] else { return }
-        objects.forEach {metaFiles.removeObject($0)}
-        print(objects)
-        files.removeAll()
-        filesToRemove.removeAll()
-        totalSize = 0
-        loadData()
-    }
-    
     @IBOutlet var metaFiles: NSArrayController!
     @IBOutlet weak var nothingFoundLabel: NSTextField!
     @IBOutlet weak var tableView: NSTableView!
@@ -55,7 +45,7 @@ class IPAViewController: NSViewController {
             remover.remove(file.path)
             metaFiles.removeObject(file)
             files.removeAll(where: {$0.isEnabled == true})
-            sizeValue.stringValue = convertToReadebleSize(totalSize)
+            sizeValue.stringValue = totalSize.convertToReadebleSize()
             sizeValue.updateLayer()
         }
         filesToRemove.removeAll()
@@ -75,6 +65,16 @@ class IPAViewController: NSViewController {
         files.forEach { $0.isEnabled = enabled }
     }
     
+    @IBAction func updateTable(_sender: NSButton) {
+        guard let objects = metaFiles.selectedObjects as? [MetaFiles] else { return }
+        objects.forEach {metaFiles.removeObject($0)}
+        print(objects)
+        files.removeAll()
+        filesToRemove.removeAll()
+        totalSize = 0
+        loadData()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         loadData()
@@ -84,7 +84,6 @@ class IPAViewController: NSViewController {
 private extension IPAViewController {
     
     func loadData()  {
-        tableView.allowsMultipleSelection = true
         getMetadata()
         nothingFoundLabel.isHidden = true
         tableView.isHidden = false
@@ -105,12 +104,12 @@ private extension IPAViewController {
         for item in results {
             guard let path = item.value(forAttribute: NSMetadataItemPathKey) as? String else { return }
             guard let nsNumber = item.value(forAttribute: NSMetadataItemFSSizeKey) as? NSNumber else { return }
-            if !isGitRepository(for: path) {
+            if !path.isGitRepository() {
                 totalSize += nsNumber.int64Value
                 files.append(MetaFiles(path: path, size: nsNumber.int64Value, isEnabled: false))
             }
         }
-        sizeValue.stringValue = convertToReadebleSize(totalSize)
+        sizeValue.stringValue = totalSize.convertToReadebleSize()
         metaFiles.add(contentsOf: files)
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name.NSMetadataQueryDidFinishGathering, object: nil)
         hideTableViewIfNeeded()
@@ -123,31 +122,5 @@ private extension IPAViewController {
             nothingFoundLabel.isHidden = false
         }
     }
-    
-    func convertToReadebleSize(_ size: Int64) -> String {
-        return ByteCountFormatter.string(fromByteCount: size, countStyle: .file)
-    }
-    
-    func isGitRepository(for path: String) -> Bool {
-        let fileManager = FileManager.default
-        guard var components = fileManager.componentsToDisplay(forPath: path) else { return false}
-        components.removeFirst()
-        components.removeLast()
-        let iteratorOfComponents = components
-        for _ in iteratorOfComponents {
-            let path = "/\(components.joined(separator: "/"))/"
-            print(path)
-            if fileManager.fileExists(atPath: path + ".git") {
-                print("exists")
-                return true
-            } else {
-                print("doesnt")
-                components.removeLast()
-            }
-        }
-        return false
-    }
 }
-
-
 

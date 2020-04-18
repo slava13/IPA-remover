@@ -13,6 +13,8 @@
 		F94AF9C324425239006E5908 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F94AF9C224425239006E5908 /* Assets.xcassets */; };
 		F94AF9C624425239006E5908 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F94AF9C424425239006E5908 /* Main.storyboard */; };
 		F94AF9D224425760006E5908 /* MetaFiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94AF9D124425760006E5908 /* MetaFiles.swift */; };
+		F9DBF39B244B2F1800B0257C /* SizeExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DBF39A244B2F1800B0257C /* SizeExtension.swift */; };
+		F9DBF39D244B2FE800B0257C /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DBF39C244B2FE800B0257C /* StringExtension.swift */; };
 		F9E2AEB82446482C00147A2A /* FileManagerInjectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E2AEB72446482C00147A2A /* FileManagerInjectable.swift */; };
 		F9E2AEBA2446497400147A2A /* Remover.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E2AEB92446497400147A2A /* Remover.swift */; };
 /* End PBXBuildFile section */
@@ -27,6 +29,8 @@
 		F94AF9C724425239006E5908 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F94AF9C824425239006E5908 /* IPA_remover.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = IPA_remover.entitlements; sourceTree = "<group>"; };
 		F94AF9D124425760006E5908 /* MetaFiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetaFiles.swift; sourceTree = "<group>"; };
+		F9DBF39A244B2F1800B0257C /* SizeExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizeExtension.swift; sourceTree = "<group>"; };
+		F9DBF39C244B2FE800B0257C /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		F9E2AEB72446482C00147A2A /* FileManagerInjectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerInjectable.swift; sourceTree = "<group>"; };
 		F9E2AEB92446497400147A2A /* Remover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Remover.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -79,8 +83,18 @@
 				F9E2AEB72446482C00147A2A /* FileManagerInjectable.swift */,
 				F9E2AEB92446497400147A2A /* Remover.swift */,
 				C65AC6182448FDFF0016EC24 /* SizeToStringTransformer.swift */,
+				F9DBF399244B2F0200B0257C /* Extensions */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		F9DBF399244B2F0200B0257C /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				F9DBF39A244B2F1800B0257C /* SizeExtension.swift */,
+				F9DBF39C244B2FE800B0257C /* StringExtension.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -157,7 +171,9 @@
 				F94AF9C124425236006E5908 /* IPAViewController.swift in Sources */,
 				F9E2AEBA2446497400147A2A /* Remover.swift in Sources */,
 				F94AF9D224425760006E5908 /* MetaFiles.swift in Sources */,
+				F9DBF39D244B2FE800B0257C /* StringExtension.swift in Sources */,
 				C65AC6192448FDFF0016EC24 /* SizeToStringTransformer.swift in Sources */,
+				F9DBF39B244B2F1800B0257C /* SizeExtension.swift in Sources */,
 				F94AF9BF24425236006E5908 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
