@@ -85,6 +85,8 @@ private extension IPAViewController {
         getMetadata()
         nothingFoundLabel.isHidden = true
         tableView.isHidden = false
+        tableView.allowsColumnResizing = false
+        tableView.allowsColumnReordering = false
     }
     
     func getMetadata() {
