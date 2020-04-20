@@ -18,7 +18,7 @@ class MetaData: FileManagerInjectable {
     
     public func fetchFiles(_ completion: @escaping ([MetaFiles]) -> Void) {
         completionHandler = completion
-        performFakeAccessToFDA()
+      //  performFakeAccessToFDA()
         getMetadata()
     }
     

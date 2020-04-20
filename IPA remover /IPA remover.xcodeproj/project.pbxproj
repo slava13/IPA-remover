@@ -73,6 +73,7 @@
 				F94AF9C424425239006E5908 /* Main.storyboard */,
 				F94AF9C724425239006E5908 /* Info.plist */,
 				F94AF9C824425239006E5908 /* IPA_remover.entitlements */,
+				F9DBF399244B2F0200B0257C /* Extensions */,
 				F94AF9CE244254C7006E5908 /* Models */,
 			);
 			path = "IPA remover";
@@ -86,7 +87,6 @@
 				F9E2AEB92446497400147A2A /* Remover.swift */,
 				C65AC6182448FDFF0016EC24 /* SizeToStringTransformer.swift */,
 				F9EFD849244BBFCD00421EC0 /* MetaData.swift */,
-				F9DBF399244B2F0200B0257C /* Extensions */,
 			);
 			path = Models;
 			sourceTree = "<group>";
