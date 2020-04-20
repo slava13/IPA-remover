@@ -18,6 +18,7 @@ class MetaData: FileManagerInjectable {
     
     public func fetchFiles(_ completion: @escaping ([MetaFiles]) -> Void) {
         completionHandler = completion
+      // This fake is needed to get an access to Downloads/Documents/Desktop folders before starting query.
       //  performFakeAccessToFDA()
         getMetadata()
     }
